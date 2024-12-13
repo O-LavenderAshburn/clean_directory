@@ -6,4 +6,5 @@ add_definitions(-DROOT_DIR="${HOME_DIR}")
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(cleandir src/main.cpp
-        src/parser.hpp)
+        src/parser.hpp
+        src/runner.hpp)
