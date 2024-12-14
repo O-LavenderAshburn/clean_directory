@@ -4,7 +4,7 @@
 #include "runner.hpp"
 
 int main(const int argc, char *argv[]) {
-    const char* version = "1.1";
+    const char* version = "1.0.0";
     if (argc <= 1) {
         std::cout << "Cleandir Removes all files in a specified directory not including folders" << std::endl;
         std::cout << "Usage: cleandir <path>"<< std::endl;
@@ -22,13 +22,10 @@ int main(const int argc, char *argv[]) {
         std::cout << std::endl;
 
         std::cout << "-v    --version" << std::endl << "    Current version" << std::endl;
-        std::cout << std::endl;
 
         std::cout << "-f    --force" << std::endl << "    Forces delete with no prompt" << std::endl;
-        std::cout << std::endl;
 
         std::cout << "-d    --destroy" << std::endl << "    Destroy directory and files" << std::endl;
-        std::cout << std::endl;
 
         return 0;
     }

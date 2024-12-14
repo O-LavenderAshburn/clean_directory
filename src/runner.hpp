@@ -5,7 +5,7 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 
-enum class Flag {force, destroy};
+enum class Flag {force, destroy, expression};
 
 struct SetFlag {
     Flag flag;
@@ -27,15 +27,19 @@ public:
         Parser parser(args);
         parser.parseCommand();
 
-        //Set force flag
-        SetFlag destroyFlag = SetFlag(Flag::destroy, false);
+        //Set flags
         SetFlag forceFlag(Flag::force, false);
+        SetFlag destroyFlag = SetFlag(Flag::destroy, false);
+        SetFlag exprFlag(Flag::expression, false);
 
         if(parser.flagArray[0] == 1) {
             forceFlag.isSet = true;
         }
         if (parser.flagArray[1] == 1) {
             destroyFlag.isSet = true;
+        }
+        if (parser.flagArray[2] == 1) {
+            exprFlag.isSet = true;
         }
 
         //get files to delete
