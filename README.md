@@ -11,5 +11,6 @@ cleandir is a simple Linux file deletion program. cleandir deletes files in a sp
 -f differs from default behaviour by not prompting the user befor cleaning files in a directory i.e. -f will force delete all files in a directory
 
 ### -h --help
+`cleandir -h`
 Outputs help infromation
 
