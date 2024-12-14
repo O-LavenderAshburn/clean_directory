@@ -1,3 +1,3 @@
-/home/oashburn/CLionProjects/cleandir/cmake-build-debug/CMakeFiles/cleandir.pr.dir
+/home/oashburn/CLionProjects/cleandir/cmake-build-debug/CMakeFiles/cleandir.dir
 /home/oashburn/CLionProjects/cleandir/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/oashburn/CLionProjects/cleandir/cmake-build-debug/CMakeFiles/rebuild_cache.dir

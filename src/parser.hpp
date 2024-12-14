@@ -71,12 +71,14 @@ private:
             std::string vec = input_args[i];
             if (vec.at(0) == '-') {
                     if (vec == "--force" || vec == "-f") {
-                        set_force();
+                        forceFlag.isSet = true;
                     }else if (vec == "--expression" || vec == "-e") {
-                        set_expr(i);
+                        exprFlag.isSet = true;
+                        expr = input_args[i+1];
                         i = i+1;
+
                     }else if (vec == "--destroy" || vec == "-d") {
-                        set_destroy();
+                        destroyFlag.isSet = true;
                     }else if (vec == "--path" || vec == "-p") {
                         continue;
                     }else {

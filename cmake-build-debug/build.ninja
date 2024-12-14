@@ -41,36 +41,36 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/oashburn/CLionProjects/cleandir/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target cleandir.pr
+# Object build statements for EXECUTABLE target cleandir
 
 
 #############################################
-# Order-only phony target for cleandir.pr
+# Order-only phony target for cleandir
 
-build cmake_object_order_depends_target_cleandir.pr: phony || .
+build cmake_object_order_depends_target_cleandir: phony || .
 
-build CMakeFiles/cleandir.pr.dir/src/main.cpp.o: CXX_COMPILER__cleandir.2epr_unscanned_Debug /home/oashburn/CLionProjects/cleandir/src/main.cpp || cmake_object_order_depends_target_cleandir.pr
+build CMakeFiles/cleandir.dir/src/main.cpp.o: CXX_COMPILER__cleandir_unscanned_Debug /home/oashburn/CLionProjects/cleandir/src/main.cpp || cmake_object_order_depends_target_cleandir
   DEFINES = -DROOT_DIR=\"/home/oashburn\"
-  DEP_FILE = CMakeFiles/cleandir.pr.dir/src/main.cpp.o.d
+  DEP_FILE = CMakeFiles/cleandir.dir/src/main.cpp.o.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/cleandir.pr.dir
-  OBJECT_FILE_DIR = CMakeFiles/cleandir.pr.dir/src
+  OBJECT_DIR = CMakeFiles/cleandir.dir
+  OBJECT_FILE_DIR = CMakeFiles/cleandir.dir/src
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target cleandir.pr
+# Link build statements for EXECUTABLE target cleandir
 
 
 #############################################
-# Link the executable cleandir.pr
+# Link the executable cleandir
 
-build cleandir.pr: CXX_EXECUTABLE_LINKER__cleandir.2epr_Debug CMakeFiles/cleandir.pr.dir/src/main.cpp.o
+build cleandir: CXX_EXECUTABLE_LINKER__cleandir_Debug CMakeFiles/cleandir.dir/src/main.cpp.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/cleandir.pr.dir
+  OBJECT_DIR = CMakeFiles/cleandir.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = cleandir.pr
-  TARGET_PDB = cleandir.pr.dbg
+  TARGET_FILE = cleandir
+  TARGET_PDB = cleandir.dbg
 
 
 #############################################
@@ -106,7 +106,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/oashburn/CLionProjects/cleandir/cmake-build-debug
 
-build all: phony cleandir.pr
+build all: phony cleandir
 
 # =============================================================================
 # Built-in targets

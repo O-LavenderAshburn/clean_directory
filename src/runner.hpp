@@ -16,8 +16,6 @@ public:
         Parser parser(args);
         parser.parseCommand();
 
-
-
         //get files to delete
         std::string path = parser.filepath;
         std::vector<std::string> fileList = getFiles(path);
@@ -58,11 +56,6 @@ public:
     }
 
 private:
-
-    void parseFlags(const std::vector<std::string>& input_args) {
-
-
-    }
 
     std::vector<std::string> getFiles(std::string path){
         std::vector<std::string> fileList;
