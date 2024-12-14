@@ -54,7 +54,6 @@ public:
                         std::cerr << "Error deleting file: " << e.what() << std::endl;
                         }
                 }else{
-
                     // Prompt user before deleting
                     char choice;
                     std::cout << "Delete File? " << file << " (y/n): ";
@@ -78,13 +77,9 @@ public:
         }
     }
 
-
-
-
 private:
 
     std::vector<std::string> getFiles(std::string path){
-
         std::vector<std::string> fileList;
         // Get the list of files (excluding directories)
         try {
@@ -100,12 +95,6 @@ private:
     }
 
 };
-
-
-
-
-
-
 
 
 
