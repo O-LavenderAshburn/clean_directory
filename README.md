@@ -18,3 +18,7 @@ cleandir is a simple Linux file deletion program. cleandir deletes **ALL** files
 `cleandir -h`
 Outputs help infromation
 
+
+### [--verbose]
+`cleandir --verbose <path to dir>`
+Verbose output
