@@ -50,8 +50,6 @@ public:
     }
 
 private:
-
-
     std::string command_str;
 
     inline void parse_filepath() {
