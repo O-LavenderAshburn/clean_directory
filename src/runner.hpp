@@ -5,17 +5,6 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 
-enum class Flag {force, destroy, expression};
-
-struct SetFlag {
-    Flag flag;
-    bool isSet;
-
-    // Constructor to initialize the flag and its state
-    explicit SetFlag(Flag f, bool set = false) : flag(f), isSet(set) {}
-
-};
-
 class Runner {
 public:
 
@@ -27,20 +16,7 @@ public:
         Parser parser(args);
         parser.parseCommand();
 
-        //Set flags
-        SetFlag forceFlag(Flag::force, false);
-        SetFlag destroyFlag = SetFlag(Flag::destroy, false);
-        SetFlag exprFlag(Flag::expression, false);
 
-        if(parser.flagArray[0] == 1) {
-            forceFlag.isSet = true;
-        }
-        if (parser.flagArray[1] == 1) {
-            destroyFlag.isSet = true;
-        }
-        if (parser.flagArray[2] == 1) {
-            exprFlag.isSet = true;
-        }
 
         //get files to delete
         std::string path = parser.filepath;
@@ -50,7 +26,7 @@ public:
             // Ask the user to delete files
             for (const auto& file : fileList) {
                 // Delete without prompting
-                if (forceFlag.isSet) {
+                if (parser.forceFlag.isSet) {
                     try {
                         fs::remove(path + "/" + file);
                         std::cout << "Deleted " << file << std::endl;
@@ -82,6 +58,11 @@ public:
     }
 
 private:
+
+    void parseFlags(const std::vector<std::string>& input_args) {
+
+
+    }
 
     std::vector<std::string> getFiles(std::string path){
         std::vector<std::string> fileList;

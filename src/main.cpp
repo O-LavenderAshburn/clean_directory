@@ -27,6 +27,7 @@ int main(const int argc, char *argv[]) {
 
         std::cout << "-d    --destroy" << std::endl << "    Destroy directory and files" << std::endl;
 
+        std::cout << "-fd    " << std::endl << "    Force Destroy directory and files" << std::endl;
         return 0;
     }
 
@@ -38,11 +39,8 @@ int main(const int argc, char *argv[]) {
 
     std::vector<std::string> args(argv+1, argv + argc);
 
-
     Runner runner;
-
     runner.run(args);
-
 
     return 0;
 }

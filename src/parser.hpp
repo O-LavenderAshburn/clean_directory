@@ -6,8 +6,26 @@
 #include <string>
 #include <vector>
 
+
+enum class Flag {force, destroy, expression};
+
+struct SetFlag {
+    Flag flag;
+    bool isSet;
+
+    // Constructor to initialize the flag and its state
+    explicit SetFlag(Flag f, bool set = false) : flag(f), isSet(set) {}
+
+};
+
+
 class Parser {
 public:
+
+    //Set flags
+    SetFlag forceFlag = SetFlag(Flag::force, false);
+    SetFlag destroyFlag = SetFlag(Flag::destroy, false);
+    SetFlag exprFlag = SetFlag (Flag::expression, false);
 
     std::vector<int> flagArray;
     std::string expr;
@@ -30,6 +48,8 @@ public:
     }
 
 private:
+
+
     std::string command_str;
 
     inline void parse_filepath() {
@@ -45,44 +65,27 @@ private:
 
     inline void parse_flags() {
 
+
+
         for (int i = 0; i < input_args.size(); i++) {
             std::string vec = input_args[i];
             if (vec.at(0) == '-') {
-                if (vec.at(1) == '-') {
-                    if (vec == "--force") {
+                    if (vec == "--force" || vec == "-f") {
                         set_force();
-                    }else if (vec == "--expression") {
+                    }else if (vec == "--expression" || vec == "-e") {
                         set_expr(i);
                         i = i+1;
-                    }else if (vec == "--destroy") {
+                    }else if (vec == "--destroy" || vec == "-d") {
                         set_destroy();
-                    }else if (vec == "--path") {
+                    }else if (vec == "--path" || vec == "-p") {
                         continue;
                     }else {
                         std::cout << "unknown flag: " << vec << std::endl;
                         exit(1);
                     }
-
-                }else
-                    if (vec == "-f") {
-                        set_force();
-                    }else if (vec == "-e") {
-                        set_expr(i);
-                        i = i+1;
-                    }else if (vec == "-d") {
-                        set_destroy();
-                    }else if (vec == "-p") {
-                            continue;
-                    }else {
-                        std::cout << "unknown flag: " << vec << std::endl;
-                        exit(1);
-                    }
-
                 }
             }
-
         }
-
     inline void set_force() {
         flagArray[0] = 1;
     }
@@ -95,8 +98,6 @@ private:
         flagArray[2] = 1;
         expr = input_args[i+1];
     }
-
-
 };
 
 
