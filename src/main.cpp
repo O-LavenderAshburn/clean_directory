@@ -27,7 +27,7 @@ int main(const int argc, char *argv[]) {
         std::cout << "-f    --force" << std::endl << "        Forces delete with no prompt" << std::endl;
         std::cout << std::endl;
 
-        std::cout << "-d    --destroy" << std::endl << "       Recursively deletes sub directories and files" << std::endl;
+        std::cout << "-d    --destroy" << std::endl << "       Destroy directory and files" << std::endl;
         std::cout << std::endl;
 
         return 0;
@@ -38,9 +38,13 @@ int main(const int argc, char *argv[]) {
         std::cout << "Version " <<version << std::endl;
         return 0;
     }
+
+    std::vector<std::string> args(argv+1, argv + argc);
+
+
     Runner runner;
 
-    runner.run("-f -e [some_expr] -d ");
+    runner.run(args);
 
 
     return 0;

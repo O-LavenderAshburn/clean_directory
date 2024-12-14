@@ -12,11 +12,11 @@ public:
     std::vector<int> flagArray;
     std::string expr;
     std::string filepath;
-
+    std::vector<std::string> input_args;
     // Constructor to initialize the string to parse
-    inline explicit Parser(const std::string &input) {
-        command_str = input;  // Ensure src is assigned properly
+    inline explicit Parser(const std::vector<std::string> &input) {
 
+        input_args = input;
         //Flag Mapping: Force, Destroy, Expression
         flagArray = {0,0,0};
         expr ="";
@@ -25,32 +25,28 @@ public:
 
     inline void parseCommand() {
         // Call parse and return the result
-        vectorised = vectorize(command_str);
         parse_flags();
+        parse_filepath();
     }
 
 private:
     std::string command_str;
-    std::vector<std::string> vectorised;
 
     inline void parse_filepath() {
 
-        for (int i = 0; i < vectorised.size(); i++) {
-            if (vectorised[i] == "-p" || vectorised[i] == "--path") {
-                filepath = vectorised[i+1];
+        for (int i = 0; i < input_args.size(); i++) {
+            if (input_args[i] == "-p" || input_args[i] == "--path") {
+                filepath = input_args[i+1];
                 return;
             }
         }
-        filepath = vectorised[vectorised.size()-1];
+        filepath = input_args[input_args.size()-1];
     }
 
     inline void parse_flags() {
 
-
-
-
-        for (int i = 0; i < vectorised.size(); i++) {
-            std::string vec = vectorised[i];
+        for (int i = 0; i < input_args.size(); i++) {
+            std::string vec = input_args[i];
             if (vec.at(0) == '-') {
                 if (vec.at(1) == '-') {
                     if (vec == "--force") {
@@ -97,21 +93,7 @@ private:
 
     inline void set_expr(int i) {
         flagArray[2] = 1;
-        expr = vectorised[i+1];
-    }
-
-
-
-    static inline std::vector<std::string> vectorize(const std::string &input) {
-        std::vector<std::string> result;
-        std::stringstream ss(input);  // Create a string stream from the input string
-        std::string word;
-
-        // Tokenize the string based on spaces and store each word in the vector
-        while (ss >> word) {
-            result.push_back(word);
-        }
-        return result;
+        expr = input_args[i+1];
     }
 
 
