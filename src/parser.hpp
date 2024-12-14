@@ -65,8 +65,6 @@ private:
 
     inline void parse_flags() {
 
-
-
         for (int i = 0; i < input_args.size(); i++) {
             std::string vec = input_args[i];
             if (vec.at(0) == '-') {
@@ -81,25 +79,15 @@ private:
                         destroyFlag.isSet = true;
                     }else if (vec == "--path" || vec == "-p") {
                         continue;
-                    }else {
+                    }else if{
+
+                    }else{
                         std::cout << "unknown flag: " << vec << std::endl;
                         exit(1);
                     }
                 }
             }
         }
-    inline void set_force() {
-        flagArray[0] = 1;
-    }
-
-    inline void set_destroy() {
-        flagArray[1] = 1;
-    }
-
-    inline void set_expr(int i) {
-        flagArray[2] = 1;
-        expr = input_args[i+1];
-    }
 };
 
 

@@ -15,7 +15,7 @@ int main(const int argc, char *argv[]) {
 
 
     // Check for help flags using std::string
-    if (std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") {
+    if ((std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") && argc == 2) {
         std::cout << std::endl <<"Cleandir Removes all files in a specified directory not including folders"<< std::endl;
 
         std::cout << std::endl <<"Usage: cleandir <path>"<< std::endl;
