@@ -11,7 +11,7 @@ int main(const int argc, char *argv[]) {
         std::cout << "try: cleandir --help for more options"<< std::endl;
 
         return 0;
-    }
+    };
 
 
     // Check for help flags using std::string
@@ -43,4 +43,4 @@ int main(const int argc, char *argv[]) {
     runner.run(args);
 
     return 0;
-}
+};

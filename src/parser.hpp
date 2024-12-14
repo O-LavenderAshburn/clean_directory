@@ -50,8 +50,6 @@ public:
     }
 
 private:
-
-
     std::string command_str;
 
     inline void parse_filepath() {
@@ -77,7 +75,13 @@ private:
                     expr = input_args[i+1];
                     i = i+1;
                 }else if (vec == "--destroy" || vec == "-d") {
+                    // error if more flags are present with destroy
+                    if (vec.size() > 2) {
+                        std::cout << "Too many flags for destroy"  << std::endl;
+                        exit(1);
+                    }
                     destroyFlag.isSet = true;
+                    return;
                 }else if (vec == "--path" || vec == "-p") {
                     continue;
                 }else if (vec == "--verbose"){

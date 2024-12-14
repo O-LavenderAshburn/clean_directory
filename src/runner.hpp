@@ -16,6 +16,11 @@ public:
         Parser parser(args);
         parser.parseCommand();
 
+        if (parser.destroyFlag.isSet) {
+            destroy(parser.filepath);
+            return;
+        }
+
         //get files to delete
         std::string path = parser.filepath;
         std::vector<std::string> fileList = getFiles(path);
@@ -77,6 +82,19 @@ private:
             std::cerr << "Error reading directory: " << e.what() << std::endl;
         }
         return fileList;
+    }
+
+    void destroy(std::string path) {
+        try {
+            if (fs::exists(path)) {
+                fs::remove_all(path);  // Fast recursive deletion
+                std::cout << "Deleted: " << path << std::endl;
+            } else {
+                std::cerr << "Path not found: " << path << std::endl;
+            }
+        } catch (const fs::filesystem_error& e) {
+            std::cerr << "Error deleting path: " << e.what() << std::endl;
+        }
     }
 
 };
