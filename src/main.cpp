@@ -15,7 +15,7 @@ int main(const int argc, char *argv[]) {
 
 
     // Check for help flags using std::string
-    if (std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") {
+    if ((std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") && argc == 2) {
         std::cout << std::endl <<"Cleandir Removes all files in a specified directory not including folders"<< std::endl;
 
         std::cout << std::endl <<"Usage: cleandir <path>"<< std::endl;
@@ -27,6 +27,7 @@ int main(const int argc, char *argv[]) {
 
         std::cout << "-d    --destroy" << std::endl << "    Destroy directory and files" << std::endl;
 
+        std::cout << "--verbose    " << std::endl << "    Verbose output" << std::endl;
         return 0;
     }
 
@@ -38,11 +39,8 @@ int main(const int argc, char *argv[]) {
 
     std::vector<std::string> args(argv+1, argv + argc);
 
-
     Runner runner;
-
     runner.run(args);
-
 
     return 0;
 }

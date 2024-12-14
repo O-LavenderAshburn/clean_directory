@@ -5,17 +5,6 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 
-enum class Flag {force, destroy, expression};
-
-struct SetFlag {
-    Flag flag;
-    bool isSet;
-
-    // Constructor to initialize the flag and its state
-    explicit SetFlag(Flag f, bool set = false) : flag(f), isSet(set) {}
-
-};
-
 class Runner {
 public:
 
@@ -27,21 +16,6 @@ public:
         Parser parser(args);
         parser.parseCommand();
 
-        //Set flags
-        SetFlag forceFlag(Flag::force, false);
-        SetFlag destroyFlag = SetFlag(Flag::destroy, false);
-        SetFlag exprFlag(Flag::expression, false);
-
-        if(parser.flagArray[0] == 1) {
-            forceFlag.isSet = true;
-        }
-        if (parser.flagArray[1] == 1) {
-            destroyFlag.isSet = true;
-        }
-        if (parser.flagArray[2] == 1) {
-            exprFlag.isSet = true;
-        }
-
         //get files to delete
         std::string path = parser.filepath;
         std::vector<std::string> fileList = getFiles(path);
@@ -50,10 +24,13 @@ public:
             // Ask the user to delete files
             for (const auto& file : fileList) {
                 // Delete without prompting
-                if (forceFlag.isSet) {
+                if (parser.forceFlag.isSet) {
                     try {
                         fs::remove(path + "/" + file);
-                        std::cout << "Deleted " << file << std::endl;
+
+                        if (parser.verboseFlag.isSet) {
+                            std::cout << "Deleted " << file << std::endl;
+                        }
                     }catch (const fs::filesystem_error& e){
                         std::cerr << "Error deleting file: " << e.what() << std::endl;
                         }
@@ -66,13 +43,17 @@ public:
                     if (choice == 'y' || choice == 'Y') {
                         try {
                             fs::remove(path + "/" + file);
-                            std::cout << "Deleted " << file << std::endl;
 
+                            if (parser.verboseFlag.isSet) {
+                                std::cout << "Deleted " << file << std::endl;
+                            }
                         } catch (const fs::filesystem_error& e) {
                             std::cerr << "Error deleting file: " << e.what() << std::endl;
                         }
                     } else {
-                        std::cout << "Skipped " << file << std::endl;
+                        if (parser.verboseFlag.isSet) {
+                            std::cout << "Skipped " << file << std::endl;
+                        }
                     }
                 }
             }

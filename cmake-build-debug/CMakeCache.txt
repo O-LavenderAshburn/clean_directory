@@ -225,6 +225,15 @@ clean_IS_TOP_LEVEL:STATIC=ON
 clean_SOURCE_DIR:STATIC=/home/oashburn/CLionProjects/cleandir
 
 //Value Computed by CMake
+clean_dir_BINARY_DIR:STATIC=/home/oashburn/CLionProjects/cleandir/cmake-build-debug
+
+//Value Computed by CMake
+clean_dir_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+clean_dir_SOURCE_DIR:STATIC=/home/oashburn/CLionProjects/cleandir
+
+//Value Computed by CMake
 cleandir_BINARY_DIR:STATIC=/home/oashburn/CLionProjects/cleandir/cmake-build-debug
 
 //Value Computed by CMake
