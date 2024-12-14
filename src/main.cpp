@@ -27,7 +27,7 @@ int main(const int argc, char *argv[]) {
 
         std::cout << "-d    --destroy" << std::endl << "    Destroy directory and files" << std::endl;
 
-        std::cout << "-fd    " << std::endl << "    Force Destroy directory and files" << std::endl;
+        std::cout << "--verbose    " << std::endl << "    Verbose output" << std::endl;
         return 0;
     }
 

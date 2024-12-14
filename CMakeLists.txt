@@ -7,4 +7,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(cleandir src/main.cpp
         src/parser.hpp
-        src/runner.hpp)
+        src/runner.hpp
+        cmake-build-debug/TestDir/asda.hpp)

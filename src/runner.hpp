@@ -27,7 +27,10 @@ public:
                 if (parser.forceFlag.isSet) {
                     try {
                         fs::remove(path + "/" + file);
-                        std::cout << "Deleted " << file << std::endl;
+
+                        if (parser.verboseFlag.isSet) {
+                            std::cout << "Deleted " << file << std::endl;
+                        }
                     }catch (const fs::filesystem_error& e){
                         std::cerr << "Error deleting file: " << e.what() << std::endl;
                         }
@@ -40,13 +43,17 @@ public:
                     if (choice == 'y' || choice == 'Y') {
                         try {
                             fs::remove(path + "/" + file);
-                            std::cout << "Deleted " << file << std::endl;
 
+                            if (parser.verboseFlag.isSet) {
+                                std::cout << "Deleted " << file << std::endl;
+                            }
                         } catch (const fs::filesystem_error& e) {
                             std::cerr << "Error deleting file: " << e.what() << std::endl;
                         }
                     } else {
-                        std::cout << "Skipped " << file << std::endl;
+                        if (parser.verboseFlag.isSet) {
+                            std::cout << "Skipped " << file << std::endl;
+                        }
                     }
                 }
             }

@@ -7,7 +7,7 @@
 #include <vector>
 
 
-enum class Flag {force, destroy, expression};
+enum class Flag {force, destroy, expression,verbose};
 
 struct SetFlag {
     Flag flag;
@@ -26,6 +26,8 @@ public:
     SetFlag forceFlag = SetFlag(Flag::force, false);
     SetFlag destroyFlag = SetFlag(Flag::destroy, false);
     SetFlag exprFlag = SetFlag (Flag::expression, false);
+    SetFlag verboseFlag = SetFlag (Flag::verbose, false);
+
 
     std::vector<int> flagArray;
     std::string expr;
@@ -68,26 +70,25 @@ private:
         for (int i = 0; i < input_args.size(); i++) {
             std::string vec = input_args[i];
             if (vec.at(0) == '-') {
-                    if (vec == "--force" || vec == "-f") {
-                        forceFlag.isSet = true;
-                    }else if (vec == "--expression" || vec == "-e") {
-                        exprFlag.isSet = true;
-                        expr = input_args[i+1];
-                        i = i+1;
-
-                    }else if (vec == "--destroy" || vec == "-d") {
-                        destroyFlag.isSet = true;
-                    }else if (vec == "--path" || vec == "-p") {
-                        continue;
-                    }else if{
-
-                    }else{
-                        std::cout << "unknown flag: " << vec << std::endl;
-                        exit(1);
-                    }
+                if (vec == "--force" || vec == "-f") {
+                    forceFlag.isSet = true;
+                }else if (vec == "--expression" || vec == "-e") {
+                    exprFlag.isSet = true;
+                    expr = input_args[i+1];
+                    i = i+1;
+                }else if (vec == "--destroy" || vec == "-d") {
+                    destroyFlag.isSet = true;
+                }else if (vec == "--path" || vec == "-p") {
+                    continue;
+                }else if (vec == "--verbose"){
+                    verboseFlag.isSet = true;
+                }else{
+                    std::cout << "unknown flag: " << vec << std::endl;
+                    exit(1);
                 }
             }
         }
+    }
 };
 
 
