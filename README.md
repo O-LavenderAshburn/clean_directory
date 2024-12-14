@@ -10,6 +10,10 @@ cleandir is a simple Linux file deletion program. cleandir deletes **ALL** files
 `cleandir -f <path to dir>`
 -f differs from default behaviour by not prompting the user befor cleaning files in a directory i.e. -f will force delete all files in a directory
 
+### [-d --destroy] Removes A directory
+`cleandir -d <path to dir>`
+Destroys sub-directory, files and itself 
+
 ### [-p --path] Spcify path to directory
 `cleandir -p <path to dir> -f`
 -p can be used in the case the path is specified before other flag arguments are uesd 
