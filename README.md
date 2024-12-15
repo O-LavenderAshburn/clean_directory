@@ -1,6 +1,6 @@
 # cleandir
 
-cleandir is a simple Linux file deletion program. cleandir deletes **ALL** files in a specified directory.
+Cleandir is a simple file deletion program. Cleandir's intended use is to delete **ALL** files in a specified directory but can also delete directories.  
 
 ## Usage
 `cleandir <path to dir>`
@@ -21,7 +21,6 @@ Destroys sub-directory, files and itself
 ### [-h --help]
 `cleandir -h`
 Outputs help infromation
-
 
 ### [--verbose]
 `cleandir --verbose <path to dir>`
