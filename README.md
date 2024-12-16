@@ -42,5 +42,5 @@ blacklist files so they are deleted when -b --blacklist flag is set
 ## Rexgex deletion
 Delete files based on regex
 
-## Extention deletion
+## Extension deletion
 Delete files based on extention 
