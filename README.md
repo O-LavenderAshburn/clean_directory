@@ -2,6 +2,8 @@
 
 Cleandir is a simple file deletion program. Cleandir's intended use is to delete **ALL** files in a specified directory but can also delete directories.  
 
+More info on the [wiki](https://github.com/O-LavenderAshburn/clean_directory/wiki).
+
 ## Usage
 `cleandir <path to dir>`
 ## Flags
