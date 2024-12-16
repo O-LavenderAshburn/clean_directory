@@ -2,12 +2,12 @@
 #define PARSER_HPP
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
+#include <regex>
 
 
-enum class Flag {force, destroy, expression,verbose};
+enum class Flag {force, destroy, regex,verbose, extension};
 
 struct SetFlag {
     Flag flag;
@@ -19,20 +19,21 @@ struct SetFlag {
 };
 
 
-class Parser {
+class Parser{
 public:
 
     //Set flags
     SetFlag forceFlag = SetFlag(Flag::force, false);
     SetFlag destroyFlag = SetFlag(Flag::destroy, false);
-    SetFlag exprFlag = SetFlag (Flag::expression, false);
+    SetFlag exprFlag = SetFlag (Flag::regex, false);
     SetFlag verboseFlag = SetFlag (Flag::verbose, false);
-
+    SetFlag extensionFlag = SetFlag (Flag::extension, false);
 
     std::vector<int> flagArray;
     std::string expr;
     std::string filepath;
     std::vector<std::string> input_args;
+
     // Constructor to initialize the string to parse
     inline explicit Parser(const std::vector<std::string> &input) {
 
@@ -50,7 +51,9 @@ public:
     }
 
 private:
+
     std::string command_str;
+    std::string extensions;
 
     inline void parse_filepath() {
 
@@ -63,6 +66,11 @@ private:
         filepath = input_args[input_args.size()-1];
     }
 
+
+    /*
+     *Parse flags set in the input args
+     *
+     */
     inline void parse_flags() {
 
         for (int i = 0; i < input_args.size(); i++) {
@@ -70,7 +78,7 @@ private:
             if (vec.at(0) == '-') {
                 if (vec == "--force" || vec == "-f") {
                     forceFlag.isSet = true;
-                }else if (vec == "--expression" || vec == "-e") {
+                }else if (vec == "--regex" || vec == "-r") {
                     exprFlag.isSet = true;
                     expr = input_args[i+1];
                     i = i+1;
@@ -86,11 +94,33 @@ private:
                     continue;
                 }else if (vec == "--verbose"){
                     verboseFlag.isSet = true;
+                }else if (vec == "-e" || vec == "--extension"){
+                    extensionFlag.isSet = true;
+                    extensions = input_args[i+1];
                 }else{
                     std::cout << "unknown flag: " << vec << std::endl;
                     exit(1);
                 }
             }
+        }
+        if (extensionFlag.isSet) {
+            parse_extension(extensions);
+        }
+    }
+
+    /*
+     *Parse the validity of the input of the extension
+     *
+     */
+    inline void parse_extension(const std::string& extn) {
+        std::regex pattern(R"(\{(\w+)(,\w+)*\})");
+        if (std::regex_match(extn, pattern)) {
+            if (verboseFlag.isSet) {
+                std::cout << "Deleting files from extension set: "<< extn << std::endl;
+            }
+        } else {
+            std::cout << "Invalid extension format. Use format: -e {jpg,py,} " << extn << std::endl;
+            exit(1);
         }
     }
 };

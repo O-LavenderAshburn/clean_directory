@@ -68,7 +68,10 @@ public:
     }
 
 private:
-
+    /*
+     *Get the list of files to delete from the directory
+     *
+     */
     std::vector<std::string> getFiles(std::string path){
         std::vector<std::string> fileList;
         // Get the list of files (excluding directories)
@@ -83,7 +86,10 @@ private:
         }
         return fileList;
     }
-
+    /*
+     *Destroy a directory
+     *
+     */
     void destroy(std::string path) {
         try {
             if (fs::exists(path)) {
