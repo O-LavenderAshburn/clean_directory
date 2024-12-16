@@ -27,3 +27,20 @@ Outputs help infromation
 ### [--verbose]
 `cleandir --verbose <path to dir>`
 Verbose output
+
+# Future features
+
+## File whitelisting 
+Whitelist files so they are not deleted 
+
+## Directory whitelisting 
+Whitelist Directories so they are not deleted 
+
+## File blacklisting 
+blacklist files so they are deleted when -b --blacklist flag is set 
+
+## Rexgex deletion
+Delete files based on regex
+
+## Extention deletion
+Delete files based on extention 
