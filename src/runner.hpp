@@ -3,6 +3,8 @@
 
 #include "parser.hpp"
 #include <filesystem>
+
+
 namespace fs = std::filesystem;
 
 class Runner {
@@ -15,6 +17,7 @@ public:
 
         Parser parser(args);
         parser.parseCommand();
+        std::vector<std::string> fileList;
 
         if (parser.destroyFlag.isSet) {
             destroy(parser.filepath);
@@ -23,7 +26,11 @@ public:
 
         //get files to delete
         std::string path = parser.filepath;
-        std::vector<std::string> fileList = getFiles(path);
+        if (parser.extensionFlag.isSet) {
+             fileList = getFiles(path);
+        }else {
+            fileList = getFilesByExtension(path, parser.extensions);
+        }
 
         try {
             // Ask the user to delete files
@@ -68,8 +75,9 @@ public:
     }
 
 private:
+
     /*
-     *Get the list of files to delete from the directory
+     *Get the list of files to delete from the directory.
      *
      */
     std::vector<std::string> getFiles(std::string path){
@@ -86,8 +94,18 @@ private:
         }
         return fileList;
     }
+
     /*
-     *Destroy a directory
+     *Get all the files with the specified extensions.
+     *
+     */
+    std::vector<std::string> getFilesByExtension(const std::string& path, const std::string& extString) {
+        std::vector<std::string> fileList;
+
+    }
+
+    /*
+     *Destroy a directory.
      *
      */
     void destroy(std::string path) {

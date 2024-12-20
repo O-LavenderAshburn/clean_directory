@@ -33,6 +33,7 @@ public:
     std::string expr;
     std::string filepath;
     std::vector<std::string> input_args;
+    std::string extensions;
 
     // Constructor to initialize the string to parse
     inline explicit Parser(const std::vector<std::string> &input) {
@@ -53,7 +54,6 @@ public:
 private:
 
     std::string command_str;
-    std::string extensions;
 
     inline void parse_filepath() {
 
@@ -116,6 +116,7 @@ private:
         std::regex pattern(R"(\{(\w+)(,\w+)*\})");
         if (std::regex_match(extn, pattern)) {
             if (verboseFlag.isSet) {
+                extensions = extn;
                 std::cout << "Deleting files from extension set: "<< extn << std::endl;
             }
         } else {
